@@ -1,0 +1,57 @@
+# ==========================================================
+# STM32 / Keil 工程的 .gitignore
+# 原则: 只提交"源文件"和"工程配置", 不提交"编译产物"和"个人设置"
+# ==========================================================
+
+# ---------- 编译产物（最大, 必须忽略）----------
+# MDK-ARM/rch7/ 是 Keil 的输出目录(.axf/.o/.map...), 约 87 MB
+MDK-ARM/rch7/
+MDK-ARM/build/
+*.axf
+*.hex
+*.bin
+*.elf
+*.map
+*.lst
+*.dep
+*.o
+*.d
+*.crf
+*.lnp
+*.iex
+*.htm
+*.__i
+
+# ---------- Keil 的个人设置（每台电脑不同, 提交了会互相覆盖）----------
+# uvguix 存窗口布局; uvoptx 存调试器选择/断点
+MDK-ARM/*.uvguix.*
+MDK-ARM/*.uvoptx
+MDK-ARM/DebugConfig/
+MDK-ARM/EventRecorderStub.scvd
+
+# ---------- 第三方库 ----------
+# Drivers/ 是 CubeMX 根据 rch7.ioc 自动生成的 ST 官方代码, 约 78 MB / 1600 个文件。
+# 不提交的原因:
+#   1) 仓库会非常大, push 很慢
+#   2) 面试官打开仓库应该看到"你的代码", 而不是 1600 个 ST 文件
+# 需要时用 CubeMX 打开 rch7.ioc 重新生成即可。
+# 如果你改过 HAL 驱动, 就删掉下面这行。
+Drivers/
+
+# ---------- 编辑器 / 工具 ----------
+.vscode/
+MDK-ARM/.vscode/
+MDK-ARM/.eide/
+MDK-ARM/.cmsis/
+MDK-ARM/rch7.code-workspace
+*.bak
+*~
+
+# ---------- Python ----------
+__pycache__/
+*.pyc
+
+# ---------- 系统垃圾 ----------
+Thumbs.db
+desktop.ini
+.DS_Store
